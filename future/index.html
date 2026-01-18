@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>未来の一歩（裏ページ）</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<header>
+  <div class="header-row">
+    <div>
+      <h1>未来の一歩（裏ページ）</h1>
+      <p>今日ページのログから、次の一歩を生成する。信じすぎ禁止。地図は地図。</p>
+    </div>
+    <nav class="tabnav" aria-label="pages">
+      <a href="../">今日 <small>dashboard</small></a>
+      <a class="active" href="./">未来 <small>generator</small></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="panel" style="max-width:980px;margin:0 auto;">
+    <div class="panel-header">
+      <div class="panel-title">生成条件</div>
+      <small>「最近の傾向」→「バランス」→「次の一歩」の順で提案する。まずは軽いやつだけ。</small>
+    </div>
+
+    <div class="form-row" style="align-items:flex-end;flex-wrap:wrap;">
+      <label>
+        <span class="form-note">参照レンジ</span>
+        <select id="range">
+          <option value="7">直近7日</option>
+          <option value="14">直近14日</option>
+          <option value="30">直近30日</option>
+        </select>
+      </label>
+
+      <label>
+        <span class="form-note">優先カテゴリ（任意）</span>
+        <select id="focusCategory"></select>
+      </label>
+
+      <button id="generate" class="primary" type="button">提案を生成</button>
+
+      <div class="score-pill" title="ローカルに未同期の変更数">
+        <span>未同期</span>
+        <strong id="pending">0</strong>
+      </div>
+    </div>
+
+    <div id="dataHint" class="message" style="display:none;"></div>
+
+    <hr class="sep">
+
+    <div class="panel-header">
+      <div class="panel-title">提案（A/B/C固定）</div>
+      <small>選んで「保存」すると、今日ページのログに1件追加される。</small>
+    </div>
+
+    <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;">
+      <article class="card" id="cardA"></article>
+      <article class="card" id="cardB"></article>
+      <article class="card" id="cardC"></article>
+    </div>
+
+    <div class="panel-header" style="margin-top:14px;">
+      <div class="panel-title">採用して保存</div>
+      <small>「実行した？」は自己申告でOK。世界線は他人に検閲されない。</small>
+    </div>
+
+    <div class="form-row" style="flex-wrap:wrap;">
+      <label>
+        <span class="form-note">採用</span>
+        <select id="choice">
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+      </label>
+      <label>
+        <span class="form-note">実行した？</span>
+        <select id="did">
+          <option value="はい">はい</option>
+          <option value="いいえ">いいえ</option>
+        </select>
+      </label>
+    </div>
+
+    <label>
+      <span class="form-note">メモ（任意）</span>
+      <textarea id="memo" placeholder="例：時間がなくてAだけ。明日Bをやる。"></textarea>
+    </label>
+
+    <div class="form-row" style="justify-content:flex-end;gap:10px;">
+      <button id="save" class="btn-ghost" type="button">保存して今日ページへ</button>
+    </div>
+
+    <div id="saveMsg" class="message"></div>
+  </section>
+</main>
+
+<script type="module" src="assets/future.js"></script>
+</body>
+</html>
